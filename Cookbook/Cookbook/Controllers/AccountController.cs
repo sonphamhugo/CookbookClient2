@@ -29,8 +29,11 @@ namespace Cookbook.Controllers
             string JsonResult = client.DownloadString(string.Concat("https://graph.facebook.com/me?access_token=", token));
             JObject jsonUserInfo = JObject.Parse(JsonResult);
 
-            Session["Ten"] = jsonUserInfo.Value<string>("first_name");
+            Session["Ten"] = jsonUserInfo.Value<string>("name");
             Session["Ho"] = jsonUserInfo.Value<string>("last_name");
+            if (Session["Ho"] == null)
+                Session["Ho"] = "";
+
             string id = jsonUserInfo.Value<string>("id");
 
             Session["uid"] = id;
