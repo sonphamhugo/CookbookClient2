@@ -30,6 +30,9 @@ namespace Cookbook.Controllers
             JObject jsonUserInfo = JObject.Parse(JsonResult);
 
             Session["Ten"] = jsonUserInfo.Value<string>("name");
+            if (Session["Ten"] == null)
+                Session["Ten"] = "";
+
             Session["Ho"] = jsonUserInfo.Value<string>("last_name");
             if (Session["Ho"] == null)
                 Session["Ho"] = "";
